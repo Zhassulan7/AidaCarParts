@@ -1,7 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model List<Part>
+﻿@model PageViewModel
 @{
-
+    ViewData["Title"] = "Page";
 }
+@if (@Model.Parts.ToList().FirstOrDefault().Subsection != null)
+{
+    <h1>@Model.Parts.ToList().FirstOrDefault().Subsection</h1>
+}
+else
+{
+    <h1>@Model.Parts.ToList().FirstOrDefault().Section</h1>
+}
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var part in Model.Parts.ToList())
+	{
+        <div class="col mb-4">
+            <div class="card h-100">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@part.PartName</h5>
+                    <p class="card-text">@part.Availibility</p>
+                </div>
+            </div>
+        </div>
+	}
+    
+</div>

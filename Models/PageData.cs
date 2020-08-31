@@ -1,14 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AidaCarParts.Models
 {
     public class PageData
     {
-        public PageViewModel GetPageData(int page = 1, int sectionAndSubsectionId = 7)
+        public PageViewModel GetPageData(int sectionAndSubsectionId, int page)
         {
             var context = new Context();
             int pageSize = 17; // количество объектов на страницу
@@ -17,6 +20,7 @@ namespace AidaCarParts.Models
             PageViewModel ivm = new PageViewModel { PageInfo = pageInfo, Parts = phonesPerPages };
             return ivm;
         }
+
     }
     public class PageInfo
     {

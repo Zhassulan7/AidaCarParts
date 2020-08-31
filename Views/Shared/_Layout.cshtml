@@ -35,28 +35,34 @@
             var sections = sectionsAndSubsections.Where(s => !string.IsNullOrEmpty(s.Section));
             var subsections = sectionsAndSubsections.Where(s => !string.IsNullOrEmpty(s.Subsection));
         }
-        @foreach (var section in sections)
+        @foreach (var section in sections.GroupBy(s => s.Section))
         {
-            @Html.ActionLink(section.Section, "Page", "Home", new { sectionAndSubsectionId = section.Id }, new { @class = "btn btn - danger" } )
-        }
         <div class="btn-group">
-            <button type="button" class="btn btn-danger">Action</button>
-            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-            </div>
+            @Html.ActionLink(section.Key, "Page", "Home", new { sectionAndSubsectionId = sections.FirstOrDefault(s => s.Section == section.Key).Id }, new { @class = "btn btn-danger" })
+            @if (!string.IsNullOrEmpty(sections.FirstOrDefault(s => s.Section == section.Key).Subsection))
+            {
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    @foreach (var subsection in subsections.Where(s => s.Section == section.Key))
+                    {
+
+                        @Html.ActionLink(subsection.Subsection, "Page", "Home", new { sectionAndSubsectionId = subsections.FirstOrDefault(s => s.Subsection == subsection.Subsection).Id }, new { @class = "dropdown-item" })
+
+                    }
+                </div>
+            }
         </div>
+        }
 
 
-        @RenderBody()
+           
 
-    </div>
+
+            @RenderBody()
+
+        </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
