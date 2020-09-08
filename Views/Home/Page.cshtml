@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Page";
 }
-@if (@Model.Parts.ToList().FirstOrDefault().Subsection != null)
+@if (!string.IsNullOrEmpty(@Model.Parts.ToList().FirstOrDefault().Subsection))
 {
     <h1>@Model.Parts.ToList().FirstOrDefault().Subsection</h1>
 }
@@ -11,11 +11,11 @@ else
     <h1>@Model.Parts.ToList().FirstOrDefault().Section</h1>
 }
 
-<div class="row row-cols-1 row-cols-md-3">
+<div class="row">
     @foreach (var part in Model.Parts.ToList())
 	{
-        <div class="col mb-4">
-            <div class="card h-100">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-2">
+            <div class="card">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@part.PartName</h5>
