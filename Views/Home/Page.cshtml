@@ -13,7 +13,7 @@ else
 
 <div class="row">
     @foreach (var part in Model.Parts.ToList())
-	{
+    {
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-2">
             <div class="card">
                 <img src="..." class="card-img-top" alt="...">
@@ -23,6 +23,16 @@ else
                 </div>
             </div>
         </div>
-	}
+    }
+    <p>@Model.PageInfo.PageNumber</p>
+    @if (Model.PageInfo.PageNumber > 1)
+    {
+        @Html.ActionLink("<<", "PreviousPage", "Home")
+    }
     
+    @if (Model.PageInfo.TotalPages != Model.PageInfo.PageNumber)
+    {
+        @Html.ActionLink(">>", "NextPage", "Home")
+    }
+
 </div>
