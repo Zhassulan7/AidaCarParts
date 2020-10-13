@@ -12,39 +12,16 @@ namespace AidaCarParts.Models
     class PageData
     {
         private static int _pageSize = 17; // количество объектов на страницу
-        private static int _sectionAndSubsectionId;
-        private static int _currentPage;
 
         public static int PageSize { get { return _pageSize; } set { _pageSize = value; } }
 
         public static PageViewModel GetPageData(int sectionAndSubsectionId, int page)
         {
-            _sectionAndSubsectionId = sectionAndSubsectionId;
-            _currentPage = page;
             var context = new Context();
-            IEnumerable<Part> phonesPerPages = context.Parts.ToList().Where(p=>p.SectionAndSubsectionId == sectionAndSubsectionId).Skip((page - 1) * _pageSize).Take(_pageSize);
+            List<Part> phonesPerPages = context.Parts.ToList().Where(p=>p.SectionAndSubsectionId == sectionAndSubsectionId).Skip((page - 1) * _pageSize).Take(_pageSize).ToList();
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = _pageSize, TotalItems = context.Parts.ToList().Where(p => p.SectionAndSubsectionId == sectionAndSubsectionId).Count() };
             PageViewModel ivm = new PageViewModel { PageInfo = pageInfo, Parts = phonesPerPages };
-            return ivm;
-        }
-
-        public static PageViewModel NextPage()
-        {
-            ++_currentPage;
-            var context = new Context();
-            IEnumerable<Part> phonesPerPages = context.Parts.ToList().Where(p => p.SectionAndSubsectionId == _sectionAndSubsectionId).Skip((_currentPage - 1) * _pageSize).Take(_pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = _currentPage, PageSize = _pageSize, TotalItems = context.Parts.ToList().Where(p => p.SectionAndSubsectionId == _sectionAndSubsectionId).Count() };
-            PageViewModel ivm = new PageViewModel { PageInfo = pageInfo, Parts = phonesPerPages };
-            return ivm;
-        }
-
-        public static PageViewModel PreviousPage()
-        {
-            --_currentPage;
-            var context = new Context();
-            IEnumerable<Part> phonesPerPages = context.Parts.ToList().Where(p => p.SectionAndSubsectionId == _sectionAndSubsectionId).Skip((_currentPage - 1) * _pageSize).Take(_pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = _currentPage, PageSize = _pageSize, TotalItems = context.Parts.ToList().Where(p => p.SectionAndSubsectionId == _sectionAndSubsectionId).Count() };
-            PageViewModel ivm = new PageViewModel { PageInfo = pageInfo, Parts = phonesPerPages };
+            ivm.SectionOrSubsectionId = sectionAndSubsectionId;
             return ivm;
         }
     }
@@ -62,7 +39,8 @@ namespace AidaCarParts.Models
 
     public class PageViewModel
     {
-        public IEnumerable<Part> Parts { get; set; }
+        public List<Part> Parts { get; set; }
+        public int SectionOrSubsectionId { get; set; }
         public PageInfo PageInfo { get; set; }
     }
 }

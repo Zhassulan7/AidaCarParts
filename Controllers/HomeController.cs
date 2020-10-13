@@ -36,15 +36,16 @@ namespace AidaCarParts.Controllers
 
         public IActionResult Page(int sectionAndSubsectionId, int page = 1)
         {
-            return View(PageData.GetPageData(sectionAndSubsectionId, page));
+            var model = PageData.GetPageData(sectionAndSubsectionId, page);
+            return View(model);
         }
-        public IActionResult NextPage()
+        public IActionResult NextPage(int sectionAndSubsectionId, int page)
         {
-            return View("Page", PageData.NextPage());
+            return RedirectToAction("Page", new { sectionAndSubsectionId= sectionAndSubsectionId, page=page });
         }
-        public IActionResult PreviousPage()
+        public IActionResult PreviousPage(int sectionAndSubsectionId, int page)
         {
-            return View("Page", PageData.PreviousPage());
+            return RedirectToAction("Page", new { sectionAndSubsectionId = sectionAndSubsectionId, page = page });
         }
     }
 }

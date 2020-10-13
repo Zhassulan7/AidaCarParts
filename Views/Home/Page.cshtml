@@ -30,21 +30,22 @@ else
                 @if (Model.PageInfo.PageNumber == 1)
                 {
                     <li class="page-item disabled">
-                        @Html.ActionLink("Previous", "PreviousPage", "Home", null, new { @class = "page-link" })
+                        @Html.ActionLink("Previous", "PreviousPage", "Home", new { sectionAndSubsectionId = Model.SectionOrSubsectionId, page = Model.PageInfo.PageNumber - 1 }, new { @class = "page-link" })
                     </li>
                 }
                 else
                 {
                     <li class="page-item">
-                        @Html.ActionLink("Previous", "PreviousPage", "Home", null, new { @class = "page-link" })
+                        @Html.ActionLink("Previous", "PreviousPage", "Home", new { sectionAndSubsectionId = Model.SectionOrSubsectionId, page = Model.PageInfo.PageNumber - 1 }, new { @class = "page-link" })
                     </li>
                 }
 
                 <li class="page-item">
                     <a class="page-link" href="#">1</a>
                 </li>
+
                 <li class="page-item active">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    <a class="page-link" href="#">@Model.PageInfo.PageNumber <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="page-item">
                     <a class="page-link" href="#">3</a>
@@ -52,13 +53,13 @@ else
                 @if (Model.PageInfo.PageNumber == Model.PageInfo.TotalPages)
                 {
                     <li class="page-item disabled">
-                        @Html.ActionLink("Next", "NextPage", "Home", null, new { @class = "page-link" })
+                        @Html.ActionLink("Next", "NextPage", "Home", new { sectionAndSubsectionId = Model.SectionOrSubsectionId, page = Model.PageInfo.PageNumber + 1 }, new { @class = "page-link" })
                     </li>
                 }
                 else
                 {
                     <li class="page-item">
-                        @Html.ActionLink("Next", "NextPage", "Home", null, new { @class = "page-link" })
+                        @Html.ActionLink("Next", "NextPage", "Home", new { sectionAndSubsectionId = Model.SectionOrSubsectionId, page = Model.PageInfo.PageNumber + 1 }, new { @class = "page-link" })
                     </li>
                 }
             </ul>
