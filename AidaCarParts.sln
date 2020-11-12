@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AidaCarParts", "AidaCarParts.csproj", "{AE7846F4-FDB9-4050-858C-9B16E8E50E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AidaCarParts", "AidaCarParts.csproj", "{AE7846F4-FDB9-4050-858C-9B16E8E50E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShunchengParser", "..\ShunchengParser\ShunchengParser\ShunchengParser.csproj", "{01F98401-5188-4155-B08E-5A220821C2A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AE7846F4-FDB9-4050-858C-9B16E8E50E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE7846F4-FDB9-4050-858C-9B16E8E50E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE7846F4-FDB9-4050-858C-9B16E8E50E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F98401-5188-4155-B08E-5A220821C2A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F98401-5188-4155-B08E-5A220821C2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F98401-5188-4155-B08E-5A220821C2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F98401-5188-4155-B08E-5A220821C2A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
